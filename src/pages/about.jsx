@@ -71,6 +71,7 @@ export default function About() {
                 I began my career as a junior software engineer, honing my skills and learning from more experienced colleagues.
                 I quickly progressed to a mid-level role, where I was given more responsibilities and opportunities to lead projects.
               </p>
+
               <p>
                 Over the years, I have gained a wealth of experience in various programming languages and technologies.
                 I am particularly skilled in Java and Python, and have experience with a variety of frameworks and libraries.
