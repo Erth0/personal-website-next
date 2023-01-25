@@ -37,13 +37,14 @@ function MailIcon(props) {
 }
 
 export default function About() {
+    const metaDescription = `I'm Eluert Mukja. I live in London, where build the future of web.`;
   return (
     <>
       <Head>
         <title>About - Eluert Mukja</title>
         <meta
           name="description"
-          content="I’m Eluert Mukja. I live in New York City, where I design the future."
+          content={metaDescription}
         />
       </Head>
       <Container className="mt-16 sm:mt-32">
@@ -60,12 +61,12 @@ export default function About() {
           </div>
           <div className="lg:order-first lg:row-span-2">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-              I’m Eluert Mukja. I live in London, where build the future of web.
+              {`I'm`} Eluert Mukja. I live in London, where build the future of web.
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
-                Hi there! My name is Eluert Mukja and I'm a lead software engineer based in London, United Kingdom.
-                I've always been passionate about computers and technology, and that passion led me to pursue a career in software engineering. I'm excited to share my knowledge and experience with you and look forward to connecting.
+                Hi there! My name is Eluert Mukja and {`I'm`} a lead software engineer based in London, United Kingdom.
+                {`I've`} always been passionate about computers and technology, and that passion led me to pursue a career in software engineering. {`I'm`} excited to share my knowledge and experience with you and look forward to connecting.
               </p>
               <p>
                 I began my career as a junior software engineer, honing my skills and learning from more experienced colleagues.
@@ -74,11 +75,13 @@ export default function About() {
 
               <p>
                 Over the years, I have gained a wealth of experience in various programming languages and technologies.
-                I am particularly skilled in Java and Python, and have experience with a variety of frameworks and libraries.
+                I am particularly skilled in PHP and Javascript, and have experience with a variety of frameworks and libraries.
               </p>
               <p>
-                As a lead software engineer, I now take on a management role, overseeing the development of software projects and mentoring junior engineers.
-                I am committed to delivering high-quality, efficient and maintainable software solutions, while ensuring that the team is motivated and productive.
+                As a lead software engineer, I now take on a management role,
+                overseeing the development of software projects and mentoring junior engineers.
+                I am committed to delivering high-quality, efficient and maintainable software solutions,
+                while ensuring that the team is motivated and productive.
               </p>
             </div>
           </div>
