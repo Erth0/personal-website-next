@@ -1,0 +1,153 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const meta = {
+  author: 'Eluert Mukja',
+  date: '2021-05-16',
+  title: 'My day to day VS Code Snippets',
+  description: `
+    VS Code snippets are very powerful and therefore you can do many things with it.
+    I have create a few snippets which in my opinion are very helpful in my day to day tasks.
+  `,
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+VS Code snippets are very powerful and therefore you can do many things with it. I have create a few snippets which in my opinion are very helpful in my day to day tasks.
+
+Recently I have been moving from different text editors/ IDE's such as Sublime Text & PHP Storm, but VS Code is a very good choice between this two choices.
+Mainly my language of choice is PHP and I really love the simplicity of this language.
+
+1. Public method
+```json
+{
+	"New Public Method": {
+		"prefix": "met",
+		"body": [
+			"public function $1($2)",
+			"{",
+			"    $3",
+			"}"
+		],
+		"description": "New Public Method"
+	},
+}
+```
+
+2. Protected method
+```json
+{
+    "New Protected Method": {
+		"prefix": "pmet",
+		"body": [
+			"protected function $1($2)",
+			"{",
+			"    $3",
+			"}"
+		],
+		"description": "New Protected Method"
+	},
+}
+```
+
+3. Private method
+```json
+{
+    "New Private Method": {
+        "prefix": "pvmet",
+        "body": [
+            "private function $1($2)",
+            "{",
+            "    $3",
+            "}"
+        ],
+        "description": "New Private Method"
+    },
+}
+```
+
+4. Add a new item into array this is by far my best snippet as it increases my productivity a lot.
+```json
+{
+    "Add one item in the array": {
+		"prefix": ".",
+		"body": [
+			"'$1' => $2,"
+		],
+		"description": "Add one item in the array"
+	},
+}
+```
+
+5. Add one item in the array with second parameter same name
+```json
+{
+    "Add one item in the array with second parameter same name": {
+        "prefix": "..",
+        "body": [
+            "'$1' => \\$$1,"
+        ],
+        "description": "Add one item in the array"
+    }
+}
+```
+
+6. Laravel Model Casts
+```json
+{
+    "Laravel Model Casts": {
+        "prefix": "m:casts",
+        "body": [
+            "/**",
+            " * The attributes that should be cast to native types.",
+            " *",
+            " * @var array",
+            " */",
+            "protected \\$casts = [",
+            "    '$1' => '${0:type}',",
+            "];"
+        ],
+        "description": "Laravel Model Casts"
+    }
+}
+```
+
+6. Laravel Model Guarded
+```json
+{
+    "Laravel Model BelongsTo": {
+        "prefix": "m:belongsTo",
+        "body": [
+            "/**",
+            " * Get the ${1/(.*)/${1:/downcase}/} that the ${TM_FILENAME_BASE/(.*)$/${1:/downcase}/} belongs to.",
+            " * @return \\Illuminate\\Database\\Eloquent\\Relations\\BelongsTo",
+            " */",
+            "public function $1()",
+            "{",
+            "    return \\$this->belongsTo(${2:${1/(.*)$/${1:/capitalize}/}}::class);",
+            "}"
+        ],
+        "description": "Laravel Model BelongsTo"
+    }
+}
+```
+
+7. Laravel Has One Relationship
+```json
+{
+    "Laravel Has One Relationship": {
+        "prefix": "m:hasOne",
+        "body": [
+            "/**",
+            " * Get the ${1/(.*)/${1:/downcase}/} associated with the ${TM_FILENAME_BASE/(.*)$/${1:/downcase}/}.",
+            " *",
+            " * @return \\Illuminate\\Database\\Eloquent\\Relations\\HasOne",
+            " */",
+            "public function $1()",
+            "{",
+            "    return \\$this->hasOne(${2:${1/(.*)$/${1:/capitalize}/}}::class);",
+            "}"
+        ],
+        "description": "Laravel Has One Relationship"
+    }
+}
+```

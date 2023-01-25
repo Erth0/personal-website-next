@@ -17,6 +17,7 @@ import logoExnetGr from '@/images/logos/exnetgr.svg'
 import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { formatDate } from '@/lib/formatDate'
+import { useState } from 'react'
 
 function MailIcon(props) {
   return (
@@ -101,10 +102,29 @@ function SocialLink({ icon: Icon, ...props }) {
 }
 
 function Newsletter() {
+    const [form, setForm] = useState({email: ''});
+    const subscribeToNewsletter = async (event) => {
+        event.preventDefault();
+          try {
+            const response = await fetch('/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(form)
+            })
+            console.log(response);
+            if (response.status !== 200) {
+                console.log('something went wrong')
+            } else {
+                window.location.replace('/thank-you');
+            }
+        } catch (error) {
+            console.log('there was an error submitting', error)
+        }
+    }
   return (
     <form
-      action="/thank-you"
       className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
+      onSubmit={subscribeToNewsletter}
     >
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <MailIcon className="h-6 w-6 flex-none" />
@@ -119,6 +139,7 @@ function Newsletter() {
           placeholder="Email address"
           aria-label="Email address"
           required
+          onChange={(e) => setForm({email: e.target.value})}
           className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 sm:text-sm"
         />
         <Button type="submit" className="ml-4 flex-none">
@@ -204,6 +225,7 @@ function Resume() {
     </div>
   )
 }
+
 
 export default function Home({ articles }) {
   return (

@@ -41,75 +41,129 @@ export default function Uses() {
       >
         <div className="space-y-20">
           <ToolsSection title="Workstation">
-            <Tool title="16” MacBook Pro, M1 Max, 64GB RAM (2021)">
-              I was using an Intel-based 16” MacBook Pro prior to this and the
-              difference is night and day. I’ve never heard the fans turn on a
-              single time, even under the incredibly heavy loads I put it
-              through with our various launch simulations.
+            <Tool title="Apple MacBook Pro 2019, Intel i9 8Core, 32GB, 1TB SSD">
+              {`
+                First time owning a MacBook Pro and can't say much about it. It's incredibly powerful which was my main concern.
+                Having jumped from Windows and Linux-based systems as a developer,
+                I can't say more about macOS as it combines both worlds into one beautiful-looking operating system.
+              `}
             </Tool>
-            <Tool title="Apple Pro Display XDR (Standard Glass)">
-              The only display on the market if you want something HiDPI and
-              bigger than 27”. When you’re working at planetary scale, every
-              pixel you can get counts.
+            <Tool title="SAMSUNG C34J791 Quad HD 34 Curved LED Monitor - White & Silver">
+              {`
+                This monitor gives power to MacBook Pro with one single type "C" cable and has changed the way I work.
+                I don't regret buying it however It's missing the 4K display.
+              `}
             </Tool>
-            <Tool title="IBM Model M SSK Industrial Keyboard">
-              They don’t make keyboards the way they used to. I buy these any
-              time I see them go up for sale and keep them in storage in case I
-              need parts or need to retire my main.
+            <Tool title="Logitech MX Keys, Wireless Keyboard for Mac">
+              Well, I took the plunge and paid the hefty price for this keyboard and
+              I have to say, from the moment I took it out of the box I knew that I was not going to be disappointed.
             </Tool>
-            <Tool title="Apple Magic Trackpad">
-              Something about all the gestures makes me feel like a wizard with
-              special powers. I really like feeling like a wizard with special
-              powers.
+            <Tool title="Logitech MX Master 3">
+             This is one of the best wireless mouses and has increased my productivity by far.
+             It is worth the extra money.
             </Tool>
-            <Tool title="Herman Miller Aeron Chair">
-              If I’m going to slouch in the worst ergonomic position imaginable
-              all day, I might as well do it in an expensive chair.
+            <Tool title="AWAVO Laptop Stand">
+              Having a very expensive laptop has to be well maintained at least this gives it a better air circulation and I can make use of it as a second screen.
             </Tool>
           </ToolsSection>
           <ToolsSection title="Development tools">
-            <Tool title="Sublime Text 4">
-              I don’t care if it’s missing all of the fancy IDE features
-              everyone else relies on, Sublime Text is still the best text
-              editor ever made.
+            <Tool title="Visual Studio Code (Primary)">
+              I use VS Code as my primary text editor as it gives me the ability to be productive
+              and allows me to have some of the features of an IDE but without the overload of an IDE.
             </Tool>
-            <Tool title="iTerm2">
-              I’m honestly not even sure what features I get with this that
-              aren’t just part of the macOS Terminal but it’s what I use.
+            <Tool title="Sublime Text 4 (For easy fixes)">
+              {`
+                Sublime Text has been my favorite text editor I have stick with it since the day I first tried it.
+                The simplicity of the sublime text and that speed can’t be found in any other text editor however
+                there are some missing features and a lack of configuration.
+              `}
             </Tool>
-            <Tool title="TablePlus">
-              Great software for working with databases. Has saved me from
-              building about a thousand admin interfaces for my various projects
-              over the years.
+            <Tool title="PHPStorm (For heavy refactoring)">
+              {`
+                PHPStorm, in my opinion, is the best IDE for PHP however even with such a powerful machine
+                I often find it a bit slower and I have got used to the speed of Sublime Text so most of the time
+                I avoid using PHPStorm if I don't need it but I use it for heavy refactoring.
+              `}
+            </Tool>
+            <Tool title="SequelPro/Sequel Ace">
+              {`
+                Since I was working from a Windows/Linux environment I always loved the simplicity of SequelPro
+                for macOS however couldn't be found anywhere in the other operating systems so since
+                I switched to macOS I have stick to it.
+              `}
+            </Tool>
+            <Tool title="Tinkerwell">
+              Tinkerwell allows me to quickly test and tinker around with things that I am thinking of in a very
+              nicely put-together environment, and besides that,
+              I am trying to support as much as I can the PHP Community!
+            </Tool>
+            <Tool title="HELO">
+              {`
+                HELO is one of the best money spent on my entire list.
+                I can't thank enough BeyondCode for making such a nice tool.
+                Before using HELO I was with mailtrap but there were limitations and wasn't fast.
+                With HELO I can say I am 101% satisfied and can't describe how much time has saved me while working with emails.
+              `}
+            </Tool>
+            <Tool title="Expose">
+              {`
+                Expose is a ngrok alternative built with PHP however it doesn't have limitations like ngrok so I prefer using this.
+                Also comes with a nice dashboard where you can inspect requests while testing webhooks.
+              `}
+            </Tool>
+            <Tool title="Warp">
+              {`
+                Fig was added to my list of tools lately and I can't say enough about it why so
+                far hasn't been something like this available for developers.
+                This helps me with unknown commands as it autocompletes almost everything.
+              `}
             </Tool>
           </ToolsSection>
           <ToolsSection title="Design">
             <Tool title="Figma">
-              We started using Figma as just a design tool but now it’s become
-              our virtual whiteboard for the entire company. Never would have
-              expected the collaboration features to be the real hook.
+              {`
+                We started using Figma as just a design tool but now it’s become
+                our virtual whiteboard for the entire company. Never would have
+                expected the collaboration features to be the real hook.
+              `}
             </Tool>
           </ToolsSection>
           <ToolsSection title="Productivity">
-            <Tool title="Alfred">
-              It’s not the newest kid on the block but it’s still the fastest.
-              The Sublime Text of the application launcher world.
+            <Tool title="Raycast">
+              {`
+                It’s not the newest kid on the block but it’s still the fastest.
+                The Sublime Text of the application launcher world.
+              `}
             </Tool>
-            <Tool title="Reflect">
-              Using a daily notes system instead of trying to keep things
-              organized by topics has been super powerful for me. And with
-              Reflect, it’s still easy for me to keep all of that stuff
-              discoverable by topic even though all of my writing happens in the
-              daily note.
+            <Tool title="Bear">
+              From brainstorming and writing articles in markdown Bear allows me to do this in a very clean and beautiful interface.
             </Tool>
-            <Tool title="SavvyCal">
-              Great tool for scheduling meetings while protecting my calendar
-              and making sure I still have lots of time for deep work during the
-              week.
+            <Tool title="1Password">
+              {`
+                1Password is very nice password management which includes the 2fa option.
+                Having been with BitWarden for a while using it on my mobile and Mac I switched recently and I don't regret it.
+                Spent almost a day switching all my passwords from BitWarden but was worth it.
+              `}
             </Tool>
-            <Tool title="Focus">
-              Simple tool for blocking distracting websites when I need to just
-              do the work and get some momentum going.
+            <Tool title="Spark for Mac & Android">
+              Spark has taken away the investigations I was doing every now and then for a perfect email client which can work on my Mac
+              and on my phone. It is a beautiful email client and it just works.
+            </Tool>
+          </ToolsSection>
+          <ToolsSection title="Other">
+            <Tool title="IKEA Bekant 160x80 cm">
+              {`
+                We started using Figma as just a design tool but now it’s become
+                our virtual whiteboard for the entire company. Never would have
+                expected the collaboration features to be the real hook.
+              `}
+            </Tool>
+            <Tool title="IKEA MARKUS">
+              {`
+                We started using Figma as just a design tool but now it’s become
+                our virtual whiteboard for the entire company. Never would have
+                expected the collaboration features to be the real hook.
+              `}
             </Tool>
           </ToolsSection>
         </div>
