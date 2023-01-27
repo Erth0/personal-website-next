@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 async function subscribe(req, res) {
   const body = req.body
   try {
-    const newEntry = await prisma.inquiry.create({
+    const newEntry = await prisma.subscribers.create({
       data: {
         email: body.email,
       },
@@ -23,6 +23,8 @@ async function subscribe(req, res) {
 
     return res.status(200).json(newEntry, { success: true })
   } catch (error) {
-    res.status(500).json({ error: 'Error creating question', success: false })
+    console.log(error)
+    res.status(500).json(error.message)
+    // res.status(500).json({ error: 'Error creating question', success: false })
   }
 }
