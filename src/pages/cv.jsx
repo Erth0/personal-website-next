@@ -121,7 +121,7 @@ export default function CV() {
                             </p>
                             <p className="mt-2 text-zinc-600 dark:text-zinc-400 text-base">
                                 <span className="absolute -ml-3 transform -translate-y-px select-none sm:-ml-3">›</span>
-                                Fixed bugs and problems across the entire 360WORK's codebase in an efficient, timely manner.
+                                Fixed bugs and problems across the entire {"360WORK's"} codebase in an efficient, timely manner.
                             </p>
                             <p className="mt-2 text-zinc-600 dark:text-zinc-400 text-base">
                                 <span className="absolute -ml-3 transform -translate-y-px select-none sm:-ml-3">›</span>
