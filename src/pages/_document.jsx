@@ -50,6 +50,11 @@ export default function Document() {
           type="application/feed+json"
           href={`${process.env.NEXT_PUBLIC_SITE_URL}/rss/feed.json`}
         />
+        <script
+          src="https://cdn.usefathom.com/script.js"
+          data-site="JSFJXWDE"
+          defer
+        ></script>
       </Head>
       <body className="flex h-full flex-col bg-zinc-50 dark:bg-black">
         <Main />

@@ -117,19 +117,23 @@ export default function CV() {
                             </header>
                             <p className="mt-2 text-zinc-600 dark:text-zinc-400 text-base">
                                 <span className="absolute -ml-3 transform -translate-y-px select-none sm:-ml-3">›</span>
-                                Ensured tight cooperation with other engineer and designers through active listening, systematic communication, and leadership skills.
+                                Collaborate with cross-functional teams to design, develop, test, and deploy software solutions that meet business requirements and deliver exceptional user experiences.
                             </p>
                             <p className="mt-2 text-zinc-600 dark:text-zinc-400 text-base">
                                 <span className="absolute -ml-3 transform -translate-y-px select-none sm:-ml-3">›</span>
-                                Fixed bugs and problems across the entire {"360WORK's"} codebase in an efficient, timely manner.
+                                Lead and mentor software engineers, providing guidance on best practices and ensuring quality standards are met throughout the development process.
                             </p>
                             <p className="mt-2 text-zinc-600 dark:text-zinc-400 text-base">
                                 <span className="absolute -ml-3 transform -translate-y-px select-none sm:-ml-3">›</span>
-                                Manage multiple and sometimes competing priorities and tasks within work team.
+                                Design and optimize SQL databases to ensure efficient data storage and retrieval, and develop complex queries for data analysis and reporting.
                             </p>
                             <p className="mt-2 text-zinc-600 dark:text-zinc-400 text-base">
                                 <span className="absolute -ml-3 transform -translate-y-px select-none sm:-ml-3">›</span>
-                                Lead a team developing high quality software solutions.
+                                Develop and maintain ETL processes to move data between SQL databases and Elasticsearch clusters, ensuring data consistency and accuracy.
+                            </p>
+                            <p className="mt-2 text-zinc-600 dark:text-zinc-400 text-base">
+                                <span className="absolute -ml-3 transform -translate-y-px select-none sm:-ml-3">›</span>
+                                Work with product managers to understand business requirements and translate them into technical specifications, ensuring software solutions meet stakeholder expectations.
                             </p>
                         </section>
                     </div>
