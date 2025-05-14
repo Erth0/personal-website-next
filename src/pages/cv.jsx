@@ -213,8 +213,8 @@ export default function CV() {
                 <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
                   ›
                 </span>
-                Fixed bugs and problems across the entire 360WORK's codebase in
-                an efficient, timely manner.
+                Fixed bugs and problems across the entire 360WORK&apos;s
+                codebase in an efficient, timely manner.
               </p>
               <p className="text-md mt-2 leading-normal text-gray-700 dark:text-gray-200">
                 <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
