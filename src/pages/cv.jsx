@@ -226,7 +226,7 @@ export default function CV() {
                 using Laravel, PHP, and MySQL. I specialize in backend
                 architecture, complex APIs, and modern frontend development with
                 Vue 3, Inertia.js, and React. While my core expertise lies in
-                the Laravel ecosystem, I'm also proficient with Node.js and
+                the Laravel ecosystem, I&apos;m also proficient with Node.js and
                 Express.js. I bring hands-on experience with Elasticsearch, AWS,
                 Oracle Cloud, and Hetzner infrastructure, along with solid
                 DevOps skills to ensure smooth deployment and scalability.
