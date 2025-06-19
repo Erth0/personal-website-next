@@ -400,10 +400,10 @@ export default function CV() {
               </h2>
               <section className="mb-4 break-inside-avoid">
                 <header>
-                  <h3 className="text-lg font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+                  <h3 className="leading-snugish text-lg font-semibold text-gray-700 dark:text-gray-200">
                     IEK AKMI
                   </h3>
-                  <p className="text-md text-zinc-600 dark:text-zinc-300">
+                  <p className="text-md leading-normal text-gray-600 dark:text-gray-300">
                     2014 – 2016 | Vocational training diploma (IEK) in Computer
                     Science
                   </p>
@@ -412,15 +412,48 @@ export default function CV() {
             </div>
             <section className="mb-4 break-inside-avoid">
               <header>
-                <h3 className="text-lg font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+                <h3 className="leading-snugish text-lg font-semibold text-gray-700 dark:text-gray-200">
                   2 EPAL KATERINIS
                 </h3>
-                <p className="text-md text-zinc-600 dark:text-zinc-300">
+                <p className="text-md leading-normal text-gray-600 dark:text-gray-300">
                   2011 – 2014 | Vocational upper secondary school (EPAL) in
                   Computer Science
                 </p>
               </header>
             </section>
+          </section>
+          <section className="mt-8 first:mt-0">
+            <div className="break-inside-avoid">
+              <h2 className="mb-4 text-sm font-bold tracking-widest text-teal-700">
+                LANGUAGES
+              </h2>
+              <div className="flex gap-8">
+                <div>
+                  <div className="text-sm font-medium text-zinc-800 dark:text-zinc-100 print:text-black">
+                    English
+                  </div>
+                  <div className="text-xs text-zinc-600 dark:text-zinc-400 print:text-gray-600">
+                    Professional Working
+                  </div>
+                </div>
+                <div>
+                  <div className="text-sm font-medium text-zinc-800 dark:text-zinc-100 print:text-black">
+                    Greek
+                  </div>
+                  <div className="text-xs text-zinc-600 dark:text-zinc-400 print:text-gray-600">
+                    Native or Bilingual
+                  </div>
+                </div>
+                <div>
+                  <div className="text-sm font-medium text-zinc-800 dark:text-zinc-100 print:text-black">
+                    Albanian
+                  </div>
+                  <div className="text-xs text-zinc-600 dark:text-zinc-400 print:text-gray-600">
+                    Native or Bilingual
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
 
           <section className="mt-8 first:mt-0">
