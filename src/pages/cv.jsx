@@ -1,18 +1,20 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Skill } from '@/components/Skill'
 import { TwitterIcon, GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
 import clsx from 'clsx'
+import avatarImage from '@/images/avatar.png'
 
 function SocialLink({ className, href, children, icon: Icon }) {
   return (
     <li className={clsx(className, 'flex')}>
       <Link
         href={href}
-        className="group flex font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
+        className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
       >
-        <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
-        <span className="ml-4">{children}</span>
+        <Icon className="h-4 w-4 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
+        <span className="ml-2">{children}</span>
       </Link>
     </li>
   )
@@ -63,6 +65,36 @@ function TelephoneIcon(props) {
   )
 }
 
+function GlobeIcon(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      {...props}
+    >
+      <path
+        fillRule="evenodd"
+        d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM6.262 6.072a8.25 8.25 0 1010.562-.766 4.5 4.5 0 01-1.318 1.357L14.25 7.5l.165.33a.809.809 0 01-1.086 1.085l-.604-.302a1.125 1.125 0 00-1.298.21l-.132.131c-.439.44-.439 1.152 0 1.591l.296.296c.256.257.622.374.98.314l1.17-.195c.323-.054.654.036.905.245l1.33 1.108c.32.267.46.694.358 1.1a8.7 8.7 0 01-2.288 4.04l-.723.724a1.125 1.125 0 01-1.298.21l-.153-.076a1.125 1.125 0 01-.622-1.006v-1.089c0-.298-.119-.585-.33-.796l-1.347-1.347a1.125 1.125 0 01-.21-1.298L9.75 12l-1.64-1.64a6 6 0 01-1.676-3.257l-.172-1.03z"
+        clipRule="evenodd"
+      />
+    </svg>
+  )
+}
+
+function XIcon(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      {...props}
+    >
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  )
+}
+
 export default function CV() {
   return (
     <>
@@ -71,25 +103,115 @@ export default function CV() {
         <meta name="description" content="Thank you for checking out my CV" />
       </Head>
       <div className="page print:max-w-letter md:max-w-letter md:h-letter xsm:p-8 mx-auto max-w-5xl bg-white p-6 dark:bg-zinc-900 sm:p-9 md:p-16">
-        <header className="mb-8 flex items-center md:mb-11">
-          <div
-            className="initials-container mr-5 rounded bg-teal-600 px-3 text-base font-medium leading-none text-white"
-            style={{
-              paddingBottom: '0.6875rem',
-              paddingTop: '0.6875rem',
-            }}
-          >
-            <div
-              className="initial text-center"
-              style={{ paddingBottom: '0.1875rem' }}
-            >
-              E
+        <header className="mb-8 md:mb-10">
+          {/* Main Profile Row */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="h-24 w-24 overflow-hidden rounded-full bg-gradient-to-br from-teal-500 to-teal-600 p-0.5">
+                <Image
+                  src={avatarImage}
+                  alt="Eluert Mukja"
+                  className="h-full w-full rounded-full object-cover"
+                  priority
+                />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 md:text-3xl">
+                  Eluert Mukja
+                </h1>
+                <p className="text-sm font-medium text-teal-600 dark:text-teal-400 md:text-base">
+                  Senior Full Stack Developer
+                </p>
+                <div className="flex items-center gap-1 text-xs text-zinc-500 dark:text-zinc-400">
+                  <LocationPinIcon className="h-3 w-3" />
+                  <span>London, United Kingdom</span>
+                </div>
+              </div>
             </div>
-            <div className="initial text-center">M</div>
+
+            {/* Social Links - Screen Only */}
+            <div className="flex items-center gap-3 print:hidden">
+              <a
+                href="https://github.com/Erth0"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-zinc-400 dark:hover:bg-gray-800 dark:hover:text-white"
+                title="GitHub"
+              >
+                <GitHubIcon className="h-6 w-6" />
+              </a>
+              <a
+                href="https://linkedin.com/in/eluert-mukja/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-blue-50 hover:text-blue-600 dark:text-zinc-400 dark:hover:bg-blue-900/20 dark:hover:text-blue-400"
+                title="LinkedIn"
+              >
+                <LinkedInIcon className="h-6 w-6" />
+              </a>
+              <a
+                href="https://x.com/mukja_e"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-gray-100 hover:text-black dark:text-zinc-400 dark:hover:bg-gray-800 dark:hover:text-white"
+                title="X (formerly Twitter)"
+              >
+                <XIcon className="h-6 w-6" />
+              </a>
+            </div>
+
+            {/* Social Links - Print Only */}
+            <div className="hidden print:flex print:flex-col print:gap-1 print:text-xs print:text-gray-700">
+              <a
+                href="https://github.com/Erth0"
+                className="flex items-center gap-2 print:text-gray-700 print:no-underline"
+              >
+                <GitHubIcon className="h-3 w-3" />
+                <span>https://github.com/Erth0</span>
+              </a>
+              <a
+                href="https://linkedin.com/in/eluert-mukja/"
+                className="flex items-center gap-2 print:text-gray-700 print:no-underline"
+              >
+                <LinkedInIcon className="h-3 w-3" />
+                <span>https://linkedin.com/in/eluert-mukja/</span>
+              </a>
+              <a
+                href="https://x.com/mukja_e"
+                className="flex items-center gap-2 print:text-gray-700 print:no-underline"
+              >
+                <XIcon className="h-3 w-3" />
+                <span>https://x.com/mukja_e</span>
+              </a>
+            </div>
           </div>
-          <h1 className="pb-px text-2xl font-semibold text-zinc-800 dark:text-zinc-100">
-            Eluert Mukja
-          </h1>
+
+          {/* Contact Info Row */}
+          <div className="mt-4 flex flex-wrap items-center gap-6 border-b border-zinc-200 pb-6 text-sm text-zinc-600 dark:border-zinc-700 dark:text-zinc-400 print:border-gray-300 print:text-gray-700">
+            <a
+              href="mailto:hey@mukja.dev"
+              className="flex items-center gap-2 transition-colors hover:text-teal-600 dark:hover:text-teal-400 print:text-gray-700"
+            >
+              <MailIcon className="h-4 w-4 print:h-3 print:w-3" />
+              <span>hey@mukja.dev</span>
+            </a>
+            <a
+              href="tel:07464816930"
+              className="flex items-center gap-2 transition-colors hover:text-teal-600 dark:hover:text-teal-400 print:text-gray-700"
+            >
+              <TelephoneIcon className="h-4 w-4 print:h-3 print:w-3" />
+              <span>(+44) 7464816930</span>
+            </a>
+            <a
+              href="https://mukja.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 transition-colors hover:text-teal-600 dark:hover:text-teal-400 print:text-gray-700"
+            >
+              <GlobeIcon className="h-4 w-4 print:h-3 print:w-3" />
+              <span>mukja.dev</span>
+            </a>
+          </div>
         </header>
 
         <div className="col-gap-md md:h-letter-col print:h-letter-col col-fill-auto">
@@ -98,25 +220,19 @@ export default function CV() {
               <h2 className="mb-4 text-sm font-bold tracking-widest text-teal-700">
                 ABOUT ME
               </h2>
-              <section className="mb-4 break-inside-avoid">
-                <header>
-                  <h3 className="text-lg font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
-                    Senior Software Engineer
-                  </h3>
-                </header>
-                <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
-                  As a senior full stack web developer, I have accrued a wealth
-                  of knowledge and skills that I put to use developing
-                  cutting-edge platforms. I continue to expand my knowledge and
-                  skills constantly, figuring out new ways to push the limits of
-                  web technology. Passionate about computer science, I have
-                  learned more and more since completing my computer science
-                  degree. I am a strong believer in the value of ongoing
-                  education, embracing a mindset grounded in curiosity and
-                  vigor. Pushing myself, I strive to do projects that I can be
-                  proud of.
-                </p>
-              </section>
+              <p className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-400">
+                Senior Full Stack Developer with 9+ years of experience
+                delivering scalable, high-quality web applications, primarily
+                using Laravel, PHP, and MySQL. I specialize in backend
+                architecture, complex APIs, and modern frontend development with
+                Vue 3, Inertia.js, and React. While my core expertise lies in
+                the Laravel ecosystem, I'm also proficient with Node.js and
+                Express.js. I bring hands-on experience with Elasticsearch, AWS,
+                Oracle Cloud, and Hetzner infrastructure, along with solid
+                DevOps skills to ensure smooth deployment and scalability.
+                Passionate about clean code, performance, and building software
+                that drives real value.
+              </p>
             </div>
           </section>
 
@@ -125,228 +241,158 @@ export default function CV() {
               <h2 className="mb-4 text-sm font-bold tracking-widest text-teal-700">
                 EXPERIENCE
               </h2>
-              <section className="mb-4 break-inside-avoid">
-                <header>
-                  <h3 className="leading-snugish text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    360AI
-                  </h3>
-                  <p className="text-md leading-normal text-gray-600 dark:text-gray-300">
-                    Apr 2025 – Present | Co-Founder & CTO
-                  </p>
-                </header>
-                <p className="text-md mt-2 leading-normal text-gray-700 dark:text-gray-200">
-                  <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                    ›
-                  </span>
-                  Lead the design, development, and deployment of 360AI’s core
-                  platform, enabling companies to source and hire top tech
-                  talent 10X faster using AI-powered sourcing and accurate data.
-                </p>
-                <p className="text-md mt-2 leading-normal text-gray-700 dark:text-gray-200">
-                  <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                    ›
-                  </span>
-                  Own the overall technical strategy, system architecture, and
-                  infrastructure decisions to ensure scalability, reliability,
-                  and high performance.
-                </p>
-                <p className="text-md mt-2 leading-normal text-gray-700 dark:text-gray-200">
-                  <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                    ›
-                  </span>
-                  Collaborate closely with the CEO to align product development
-                  with business goals, ensuring rapid iteration, clear
-                  prioritisation, and user-driven outcomes.
-                </p>
-                <p className="text-md mt-2 leading-normal text-gray-700 dark:text-gray-200">
-                  <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                    ›
-                  </span>
-                  Build and maintain full-stack features across the platform,
-                  from frontend interfaces to backend services and data
-                  pipelines.
-                </p>
-                <p className="text-md mt-2 leading-normal text-gray-700 dark:text-gray-200">
-                  <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                    ›
-                  </span>
-                  Define and implement engineering best practices, including
-                  code quality standards, testing strategies, and CI/CD
-                  processes.
-                </p>
-                <p className="text-md mt-2 leading-normal text-gray-700 dark:text-gray-200">
-                  <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                    ›
-                  </span>
-                  Manage and optimise databases and data workflows, ensuring
-                  fast and accurate access to enriched candidate and company
-                  data.
-                </p>
-                <p className="text-md mt-2 leading-normal text-gray-700 dark:text-gray-200">
-                  <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                    ›
-                  </span>
-                  Prepare the engineering foundation for future team growth by
-                  documenting processes, planning for scale, and contributing to
-                  early hiring decisions.
-                </p>
-              </section>
             </div>
-            <section className="mb-4 break-inside-avoid">
+
+            <section className="mb-6 break-inside-avoid">
               <header>
                 <h3 className="leading-snugish text-lg font-semibold text-gray-700 dark:text-gray-200">
                   Talentic Ltd
                 </h3>
                 <p className="text-md leading-normal text-gray-600 dark:text-gray-300">
-                  Apr 2023 – Mar 2025 | Lead Software Engineer
+                  Lead Software Engineer | Apr 2023 – Mar 2025
                 </p>
               </header>
-              <p className="text-md mt-2 leading-normal text-gray-700 dark:text-gray-200">
-                <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                  ›
-                </span>
-                Ensured tight cooperation with other engineer and designers
-                through active listening, systematic communication, and
-                leadership skills.
+              <p className="sm:text-md mt-2 text-sm leading-normal text-gray-700 dark:text-gray-200">
+                Lead developer of a scalable AI-driven recruitment platform
+                handling massive real-time datasets.
               </p>
-              <p className="text-md mt-2 leading-normal text-gray-700 dark:text-gray-200">
-                <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                  ›
-                </span>
-                Fixed bugs and problems across the entire 360WORK&apos;s
-                codebase in an efficient, timely manner.
-              </p>
-              <p className="text-md mt-2 leading-normal text-gray-700 dark:text-gray-200">
-                <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                  ›
-                </span>
-                Manage multiple and sometimes competing priorities and tasks
-                within work team.
-              </p>
-              <p className="text-md mt-2 leading-normal text-gray-700 dark:text-gray-200">
-                <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                  ›
-                </span>
-                Lead a team developing high quality software solutions.
-              </p>
+              <ul className="ml-6 mt-3 list-disc space-y-1 text-sm text-gray-700 dark:text-gray-200">
+                <li>
+                  Led a team of 4 engineers building high-scale infrastructure
+                  to process and manage 150M+ records.
+                </li>
+                <li>
+                  Architected backend systems using Laravel, MySQL, and
+                  Elasticsearch for real-time and batch processing.
+                </li>
+                <li>
+                  Developed full-stack features using Vue 3, Inertia.js, and
+                  Tailwind CSS with a focus on performance and usability.
+                </li>
+                <li>
+                  Designed and maintained CI/CD pipelines and
+                  infrastructure-as-code workflows using AWS and Hetzner.
+                </li>
+                <li>
+                  Managed DevOps tasks, cloud cost optimization, and production
+                  monitoring for critical services.
+                </li>
+                <li>
+                  Collaborated with product managers and designers to align
+                  technical delivery with business goals.
+                </li>
+              </ul>
             </section>
 
-            <section className="mb-4 break-inside-avoid">
+            <section className="mb-6 break-inside-avoid">
               <header>
                 <h3 className="leading-snugish text-lg font-semibold text-gray-700 dark:text-gray-200">
                   Prolancer
                 </h3>
                 <p className="text-md leading-normal text-gray-600 dark:text-gray-300">
-                  Jun 2018 – March 2023 | Senior Software Engineer
+                  Senior Software Engineer | Jun 2018 – Mar 2023
                 </p>
               </header>
-              <p className="text-md mt-2 leading-normal text-gray-700 dark:text-gray-200">
-                <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                  ›
-                </span>
-                Designed and developed a robust payment system integrating
-                Stripe to enable seamless, secure transactions across the
-                platform.
+              <p className="sm:text-md mt-2 text-sm leading-normal text-gray-700 dark:text-gray-200">
+                Senior engineer on a freelancer marketplace platform supporting
+                complex payments and user workflows.
               </p>
-              <p className="text-md mt-2 leading-normal text-gray-700 dark:text-gray-200">
-                <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                  ›
-                </span>
-                Architected and implemented a comprehensive payouts system to
-                efficiently manage disbursements to multiple stakeholders.
-              </p>
-              <p className="text-md mt-2 leading-normal text-gray-700 dark:text-gray-200">
-                <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                  ›
-                </span>
-                Developed complex funds distribution logic to ensure accurate
-                allocation and tracking of payments within the platform.
-              </p>
-              <p className="text-md mt-2 leading-normal text-gray-700 dark:text-gray-200">
-                <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                  ›
-                </span>
-                Collaborated closely with cross-functional teams to align
-                payment workflows with business requirements and compliance
-                standards.
-              </p>
-              <p className="text-md mt-2 leading-normal text-gray-700 dark:text-gray-200">
-                <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                  ›
-                </span>
-                Ensured high reliability, scalability, and security of financial
-                operations through rigorous testing and continuous optimization.
-              </p>
+              <ul className="ml-6 mt-3 list-disc space-y-1 text-sm text-gray-700 dark:text-gray-200">
+                <li>
+                  Owned and scaled the entire payments and payouts system using
+                  Stripe, PayPal, and Worldpay — processing six-figure monthly
+                  transaction volumes.
+                </li>
+                <li>
+                  Built modular Laravel services with custom fund distribution
+                  and multi-party payout logic.
+                </li>
+                <li>
+                  Implemented Elasticsearch for advanced search, analytics, and
+                  reporting features.
+                </li>
+                <li>
+                  Developed dynamic dashboards and internal tooling using Vue.js
+                  and Livewire.
+                </li>
+                <li>
+                  Collaborated with operations and compliance teams to ensure
+                  accuracy and integrity of financial workflows.
+                </li>
+                <li>
+                  Led technical decisions and code reviews across multiple
+                  cross-functional projects.
+                </li>
+              </ul>
             </section>
-            <section className="mb-4 break-inside-avoid">
+
+            <section className="mb-6 break-inside-avoid">
               <header>
                 <h3 className="text-lg font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
                   COINS (Construction Industry Solutions Ltd)
                 </h3>
                 <p className="text-md text-zinc-600 dark:text-zinc-300">
-                  Feb 2017 – Apr 2018 | Software Developer
+                  Software Developer | Feb 2017 – Apr 2018
                 </p>
               </header>
-              <ul className="">
-                <li className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
-                  <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                    ›
-                  </span>
-                  Participated in creating scalable systems for supply chain.
+              <p className="sm:text-md mt-2 text-sm leading-normal text-gray-700 dark:text-gray-200">
+                Developer on ERP software products used in the construction
+                industry.
+              </p>
+              <ul className="ml-6 mt-3 list-disc space-y-1 text-sm text-gray-700 dark:text-gray-200">
+                <li>
+                  Contributed to core backend features for large-scale supply
+                  chain and finance modules.
                 </li>
-                <li className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
-                  <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                    ›
-                  </span>
-                  Resolve complex technical design issues.
+                <li>
+                  Resolved performance bottlenecks and technical issues in
+                  production-critical systems.
                 </li>
-                <li className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
-                  <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                    ›
-                  </span>
-                  Gave weekly reports to executive management regarding current
-                  developments, and tracked changes in existing software.
+                <li>
+                  Participated in refactoring legacy codebases to modernize
+                  internal architecture.
+                </li>
+                <li>
+                  Communicated regularly with product and QA teams to ensure
+                  timely and stable feature delivery.
                 </li>
               </ul>
             </section>
-            <section className="mb-4 break-inside-avoid">
+
+            <section className="mb-6 break-inside-avoid">
               <header>
                 <h3 className="text-lg font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
                   Exnet Hellas
                 </h3>
                 <p className="text-md text-zinc-600 dark:text-zinc-300">
-                  May 2015 – Dec 2016 | Junior Software Developer (Internship)
+                  Junior Software Developer (Internship) | May 2015 – Dec 2016
                 </p>
               </header>
-              <ul className="">
-                <li className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
-                  <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                    ›
-                  </span>
-                  Maintained and updated HTML/CSS templates on a regular basis
-                  and as required.
+              <p className="sm:text-md mt-2 text-sm leading-normal text-gray-700 dark:text-gray-200">
+                Full-stack developer building websites and custom CMS platforms
+                for small businesses.
+              </p>
+              <ul className="ml-6 mt-3 list-disc space-y-1 text-sm text-gray-700 dark:text-gray-200">
+                <li>
+                  Built responsive static and dynamic websites using PHP,
+                  HTML/CSS, and WordPress.
                 </li>
-                <li className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
-                  <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                    ›
-                  </span>
-                  Developing static and dynamic websites.
+                <li>
+                  Developed and customized e-commerce features and CMS
+                  functionality for clients.
                 </li>
-                <li className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
-                  <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                    ›
-                  </span>
-                  Developing e-shops with wordpress.
+                <li>
+                  Maintained clean, reusable frontend templates and optimized
+                  for SEO and performance.
                 </li>
-                <li className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
-                  <span className="absolute -ml-3 -translate-y-px transform select-none sm:-ml-3">
-                    ›
-                  </span>
-                  Developing custom CMS(Content Management System).
+                <li>
+                  Gained real-world experience delivering web solutions in a
+                  client-facing role.
                 </li>
               </ul>
             </section>
           </section>
+
           <section className="mt-8 first:mt-0">
             <div className="break-inside-avoid">
               <h2 className="mb-4 text-sm font-bold tracking-widest text-teal-700">
@@ -382,132 +428,154 @@ export default function CV() {
               <h2 className="mb-4 text-sm font-bold tracking-widest text-teal-700">
                 SKILLS
               </h2>
-              <section className="mb-4 break-inside-avoid">
-                <header>
-                  <h3 className="text-lg font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
-                    Main
-                  </h3>
-                </header>
-                <div className="my-3 last:pb-2">
-                  <ul className="text-md -mb-2 -mr-2 flex flex-wrap leading-relaxed">
-                    <Skill name="PHP" />
-                    <Skill name="MYSQL" />
-                    <Skill name="ELASTICSEARCH" />
-                    <Skill name="JAVASCRIPT" />
-                    <Skill name="CSS" />
-                    <Skill name="HTML" />
-                  </ul>
+
+              {/* Backend & Languages */}
+              <div className="mb-4 rounded border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-800/50">
+                <h3 className="mb-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
+                  Backend & Languages
+                </h3>
+                <div className="flex flex-wrap gap-1.5">
+                  <Skill name="PHP" />
+                  <Skill name="Laravel" />
+                  <Skill name="MySQL" />
+                  <Skill name="PostgreSQL" />
+                  <Skill name="Elasticsearch" />
+                  <Skill name="Redis" />
+                  <Skill name="Node.js" />
+                  <Skill name="Express.js" />
+                  <Skill name="API Development" />
+                  <Skill name="REST APIs" />
+                  <Skill name="Database Migration" />
+                  <Skill name="Internationalization" />
                 </div>
-              </section>
-            </div>
-
-            <section className="mb-4 break-inside-avoid">
-              <header>
-                <h3 className="text-lg font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
-                  Frameworks, Libraries & CMS
-                </h3>
-              </header>
-              <div className="my-3 last:pb-2">
-                <ul className="text-md -mb-2 -mr-2 flex flex-wrap leading-relaxed">
-                  <Skill name="LARAVEL" />
-                  <Skill name="INERTIAJS" />
-                  <Skill name="LIVEWIRE" />
-                  <Skill name="VUE" />
-                  <Skill name="JQUERY" />
-                  <Skill name="BOOTSTRAP" />
-                  <Skill name="AJAX" />
-                  <Skill name="TAILWINDCSS" />
-                  <Skill name="WORDPRESS" />
-                </ul>
               </div>
-            </section>
 
-            <section className="mb-4 break-inside-avoid">
-              <header>
-                <h3 className="text-lg font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
-                  Other
+              {/* Frontend & UI */}
+              <div className="mb-4 rounded border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-800/50">
+                <h3 className="mb-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
+                  Frontend & UI
                 </h3>
-              </header>
-              <div className="my-3 last:pb-2">
-                <ul className="text-md -mb-2 -mr-2 flex flex-wrap leading-relaxed">
-                  <Skill name="GIT" />
+                <div className="flex flex-wrap gap-1.5">
+                  <Skill name="JavaScript" />
+                  <Skill name="Vue.js" />
+                  <Skill name="React" />
+                  <Skill name="Inertia.js" />
+                  <Skill name="Livewire" />
+                  <Skill name="Tailwind CSS" />
+                  <Skill name="HTML5" />
+                  <Skill name="CSS3" />
                   <Skill name="SASS" />
-                  <Skill name="API INTEGRATIONS" />
-                  <Skill name="DevOps" />
-                  <Skill name="JSON" />
-                  <Skill name="AJAX" />
-                  <Skill name="XML" />
-                  <Skill name="SCRUM" />
-                  <Skill name="AWS" />
-                  <Skill name="ORACLE" />
-                  <Skill name="FORGE" />
-                  <Skill name="ENVOYER" />
-                  <Skill name="STRIPE" />
-                  <Skill name="PAYPAL" />
-                  <Skill name="WORLDPAY" />
-                  <Skill name="CI/CD" />
-                  <Skill name="PHPSTAN" />
-                  <Skill name="Laravel NOVA" />
-                </ul>
+                  <Skill name="Bootstrap" />
+                </div>
               </div>
-            </section>
-          </section>
-          <section className="mt-8 first:mt-0">
-            <div className="break-inside-avoid">
-              <h2 className="mb-4 text-sm font-bold tracking-widest text-teal-700">
-                CONTACT
-              </h2>
-              <section className="mb-4 break-inside-avoid">
-                <ul className="list-inside pr-7">
-                  <SocialLink
-                    href="https://github.com/Erth0"
-                    target="_blank"
-                    icon={GitHubIcon}
-                  >
-                    https://github.com/Erth0
-                  </SocialLink>
-                  <SocialLink
-                    href="https://twitter.com/mukja_e"
-                    target="_blank"
-                    icon={TwitterIcon}
-                    className="mt-4"
-                  >
-                    https://twitter.com/mukja_e
-                  </SocialLink>
-                  <SocialLink
-                    href="https://linkedin.com/in/eluert-mukja/"
-                    icon={LinkedInIcon}
-                    target="_blank"
-                    className="mt-4"
-                  >
-                    https://linkedin.com/in/eluert-mukja/
-                  </SocialLink>
-                  <SocialLink
-                    href="mailto:hey@mukja.dev"
-                    target="_blank"
-                    icon={MailIcon}
-                    className="mt-4"
-                  >
-                    hey@mukja.dev
-                  </SocialLink>
-                  <SocialLink
-                    href="https://www.google.com/maps/place/London/@51.5286416,-0.1015987,11z/data=!4m5!3m4!1s0x47d8a00baf21de75:0x52963a5addd52a99!8m2!3d51.5072178!4d-0.1275862"
-                    target="_blank"
-                    icon={LocationPinIcon}
-                    className="mt-4"
-                  >
-                    London, United Kingdom
-                  </SocialLink>
-                  <SocialLink
-                    href="tel:07464816930"
-                    target="_blank"
-                    icon={TelephoneIcon}
-                    className="mt-4"
-                  >
-                    (+44) 7464816930
-                  </SocialLink>
-                </ul>
-              </section>
+
+              {/* Architecture & Leadership */}
+              <div className="mb-4 rounded border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-800/50">
+                <h3 className="mb-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
+                  Architecture & Leadership
+                </h3>
+                <div className="flex flex-wrap gap-1.5">
+                  <Skill name="System Architecture" />
+                  <Skill name="Team Leadership" />
+                  <Skill name="Code Reviews" />
+                  <Skill name="Performance Optimization" />
+                  <Skill name="Database Design" />
+                  <Skill name="Technical Mentoring" />
+                </div>
+              </div>
+
+              {/* Testing & Quality */}
+              <div className="mb-4 rounded border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-800/50">
+                <h3 className="mb-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
+                  Testing & Quality
+                </h3>
+                <div className="flex flex-wrap gap-1.5">
+                  <Skill name="PHPUnit" />
+                  <Skill name="Pest PHP" />
+                  <Skill name="Unit Testing" />
+                  <Skill name="Integration Testing" />
+                  <Skill name="PHPStan" />
+                  <Skill name="Rector PHP" />
+                  <Skill name="Code Quality" />
+                </div>
+              </div>
+
+              {/* DevOps & Cloud */}
+              <div className="mb-4 rounded border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-800/50">
+                <h3 className="mb-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
+                  DevOps & Cloud
+                </h3>
+                <div className="flex flex-wrap gap-1.5">
+                  <Skill name="AWS" />
+                  <Skill name="Hetzner" />
+                  <Skill name="Oracle Cloud" />
+                  <Skill name="CI/CD" />
+                  <Skill name="Docker" />
+                  <Skill name="Infrastructure as Code" />
+                  <Skill name="Monitoring" />
+                  <Skill name="Laravel Forge" />
+                  <Skill name="Git" />
+                  <Skill name="AWS S3" />
+                  <Skill name="Queue Systems" />
+                  <Skill name="Logging & Analytics" />
+                  <Skill name="Backup & Recovery" />
+                </div>
+              </div>
+
+              {/* APIs & Integration */}
+              <div className="mb-4 rounded border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-800/50">
+                <h3 className="mb-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
+                  APIs & Integration
+                </h3>
+                <div className="flex flex-wrap gap-1.5">
+                  <Skill name="Third-party APIs" />
+                  <Skill name="Webhooks" />
+                  <Skill name="API Authentication" />
+                  <Skill name="Data Synchronization" />
+                  <Skill name="Microservices" />
+                  <Skill name="Event-driven Architecture" />
+                  <Skill name="API Documentation" />
+                  <Skill name="Mobile API Design" />
+                  <Skill name="Real-time Features" />
+                  <Skill name="Email Systems" />
+                </div>
+              </div>
+
+              {/* Security & Performance */}
+              <div className="mb-4 rounded border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-800/50">
+                <h3 className="mb-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
+                  Security & Performance
+                </h3>
+                <div className="flex flex-wrap gap-1.5">
+                  <Skill name="Security Best Practices" />
+                  <Skill name="PCI Compliance" />
+                  <Skill name="Data Protection" />
+                  <Skill name="Performance Tuning" />
+                  <Skill name="Caching Strategies" />
+                  <Skill name="Load Optimization" />
+                </div>
+              </div>
+
+              {/* Development Tools & Frameworks */}
+              <div className="mb-2 rounded border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-800/50">
+                <h3 className="mb-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
+                  Development Tools & Frameworks
+                </h3>
+                <div className="flex flex-wrap gap-1.5">
+                  <Skill name="Stripe" />
+                  <Skill name="PayPal" />
+                  <Skill name="Worldpay" />
+                  <Skill name="Laravel Nova" />
+                  <Skill name="Filament" />
+                  <Skill name="Laravel Telescope" />
+                  <Skill name="Laravel Horizon" />
+                  <Skill name="Postman" />
+                  <Skill name="Composer" />
+                  <Skill name="NPM" />
+                  <Skill name="Vite" />
+                  <Skill name="Webpack" />
+                </div>
+              </div>
             </div>
           </section>
         </div>

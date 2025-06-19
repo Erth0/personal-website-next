@@ -1,14 +1,22 @@
 import clsx from 'clsx'
 
-export function Skill({ name, className, ...props }) {
+export function Skill({ name, className, variant = 'secondary', ...props }) {
   className = clsx(
-    'inline-flex items-center px-3 py-1 mt-1 mr-2 text-sm font-medium text-white bg-teal-500 rounded-md print:border-inset uppercase',
+    'inline-flex items-center px-2.5 py-0.5 text-xs font-medium rounded-full transition-colors',
+    {
+      // Primary skills - most important/strongest
+      'bg-teal-600 text-white border border-teal-600 hover:bg-teal-700 print:bg-white print:text-black print:border-black':
+        variant === 'primary',
+      // Secondary skills - general proficiency
+      'bg-teal-50 text-teal-700 border border-teal-200 hover:bg-teal-100 dark:bg-teal-900/20 dark:text-teal-300 dark:border-teal-800 print:bg-white print:text-black print:border-black':
+        variant === 'secondary',
+    },
     className
   )
 
   return (
-    <li className={className} {...props}>
-        {name}
-    </li>
+    <span className={className} {...props}>
+      {name}
+    </span>
   )
 }
