@@ -1,47 +1,259 @@
-pre[class*='language-'] {
-  color: theme('colors.zinc.100');
+/* Base styles for enhanced code blocks - Light theme */
+.code-block-container pre[class*='language-'] {
+  color: #24292e !important; /* Dark text for light theme */
+  background: #ffffff !important; /* Ensure white background in light mode */
+  margin: 0 !important;
+  padding: 1rem !important; /* Reduced from 1.5rem */
+  border-radius: 0 !important;
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
-.token.tag,
-.token.class-name,
-.token.selector,
-.token.selector .class,
-.token.selector.class,
-.token.function {
-  color: theme('colors.pink.400');
+/* Dark theme styles */
+.dark .code-block-container pre[class*='language-'] {
+  color: #d4d4d4 !important; /* VS Code light text */
+  background: #1f2937 !important; /* Ensure dark background in dark mode */
 }
 
-.token.attr-name,
-.token.keyword,
-.token.rule,
-.token.pseudo-class,
-.token.important {
-  color: theme('colors.zinc.300');
+.code-block-container code[class*='language-'] {
+  color: inherit !important;
+  background: transparent !important;
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', monospace !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
 }
 
-.token.module {
-  color: theme('colors.pink.400');
+/* Remove any unwanted styling from all code elements */
+.code-block-container pre *,
+.code-block-container code *,
+.code-block-container .token {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  text-decoration-color: transparent !important;
+  text-underline-offset: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
 }
 
-.token.attr-value,
-.token.class,
-.token.string,
-.token.property {
-  color: theme('colors.teal.300');
+/* LIGHT THEME - VS Code Light Colors */
+.code-block-container .token.keyword,
+.code-block-container .token.rule,
+.code-block-container .token.pseudo-class,
+.code-block-container .token.important {
+  color: #0000ff !important; /* Blue for keywords */
+  font-weight: 500 !important;
 }
 
-.token.punctuation,
-.token.attr-equals {
-  color: theme('colors.zinc.500');
+.code-block-container .token.string,
+.code-block-container .token.attr-value {
+  color: #a31515 !important; /* Red for strings */
 }
 
-.token.unit,
-.language-css .token.function {
-  color: theme('colors.sky.200');
+.code-block-container .token.property {
+  color: #001080 !important; /* Dark blue for properties */
+  font-weight: 500 !important;
 }
 
-.token.comment,
-.token.operator,
-.token.combinator {
-  color: theme('colors.zinc.400');
+.code-block-container .token.function,
+.code-block-container .token.class-name {
+  color: #795e26 !important; /* Brown for functions */
+  font-weight: 500 !important;
+}
+
+.code-block-container .token.number {
+  color: #098658 !important; /* Green for numbers */
+}
+
+.code-block-container .token.boolean {
+  color: #0000ff !important; /* Blue for booleans */
+  font-weight: 500 !important;
+}
+
+.code-block-container .token.comment {
+  color: #008000 !important; /* Green for comments */
+  font-style: italic !important;
+}
+
+.code-block-container .token.punctuation,
+.code-block-container .token.attr-equals {
+  color: #24292e !important; /* Dark text for punctuation in light mode */
+}
+
+.code-block-container .token.tag {
+  color: #800000 !important; /* Dark red for tags */
+  font-weight: 500 !important;
+}
+
+.code-block-container .token.attr-name {
+  color: #ff0000 !important; /* Red for attribute names */
+}
+
+.code-block-container .token.null,
+.code-block-container .token.undefined {
+  color: #0000ff !important; /* Blue for null/undefined */
+  font-weight: 500 !important;
+}
+
+/* DARK THEME - VS Code Dark+ Colors */
+.dark .code-block-container .token.keyword,
+.dark .code-block-container .token.rule,
+.dark .code-block-container .token.pseudo-class,
+.dark .code-block-container .token.important {
+  color: #569cd6 !important; /* VS Code blue for keywords */
+  font-weight: 500 !important;
+}
+
+.dark .code-block-container .token.string,
+.dark .code-block-container .token.attr-value {
+  color: #ce9178 !important; /* VS Code orange for strings */
+}
+
+.dark .code-block-container .token.property {
+  color: #9cdcfe !important; /* VS Code light blue for properties */
+  font-weight: 500 !important;
+}
+
+.dark .code-block-container .token.function,
+.dark .code-block-container .token.class-name {
+  color: #dcdcaa !important; /* VS Code yellow for functions */
+  font-weight: 500 !important;
+}
+
+.dark .code-block-container .token.number {
+  color: #b5cea8 !important; /* VS Code light green for numbers */
+}
+
+.dark .code-block-container .token.boolean {
+  color: #569cd6 !important; /* VS Code blue for booleans */
+  font-weight: 500 !important;
+}
+
+.dark .code-block-container .token.comment {
+  color: #6a9955 !important; /* VS Code green for comments */
+  font-style: italic !important;
+}
+
+.dark .code-block-container .token.punctuation,
+.dark .code-block-container .token.attr-equals {
+  color: #d4d4d4 !important; /* VS Code light gray for punctuation */
+}
+
+.dark .code-block-container .token.tag {
+  color: #569cd6 !important; /* VS Code blue for tags */
+  font-weight: 500 !important;
+}
+
+.dark .code-block-container .token.attr-name {
+  color: #92c5f8 !important; /* VS Code light blue for attribute names */
+}
+
+.dark .code-block-container .token.null,
+.dark .code-block-container .token.undefined {
+  color: #569cd6 !important; /* VS Code blue for null/undefined */
+  font-weight: 500 !important;
+}
+
+/* JSON specific highlighting - Light theme */
+.code-block-container .language-json .token.property {
+  color: #001080 !important; /* Dark blue for JSON keys in light theme */
+  font-weight: 500 !important;
+}
+
+.code-block-container .language-json .token.string {
+  color: #a31515 !important; /* Red for JSON string values in light theme */
+}
+
+.code-block-container .language-json .token.number {
+  color: #098658 !important; /* Green for numbers in light theme */
+}
+
+.code-block-container .language-json .token.boolean {
+  color: #0000ff !important; /* Blue for booleans in light theme */
+  font-weight: 500 !important;
+}
+
+.code-block-container .language-json .token.null {
+  color: #0000ff !important; /* Blue for null in light theme */
+  font-weight: 500 !important;
+}
+
+/* JSON specific highlighting - Dark theme */
+.dark .code-block-container .language-json .token.property {
+  color: #9cdcfe !important; /* Light blue for JSON keys in dark theme */
+  font-weight: 500 !important;
+}
+
+.dark .code-block-container .language-json .token.string {
+  color: #ce9178 !important; /* Orange for JSON string values in dark theme */
+}
+
+.dark .code-block-container .language-json .token.number {
+  color: #b5cea8 !important; /* Light green for numbers in dark theme */
+}
+
+.dark .code-block-container .language-json .token.boolean {
+  color: #569cd6 !important; /* Blue for booleans in dark theme */
+  font-weight: 500 !important;
+}
+
+.dark .code-block-container .language-json .token.null {
+  color: #569cd6 !important; /* Blue for null in dark theme */
+  font-weight: 500 !important;
+}
+
+/* CSS and other languages */
+.code-block-container .token.unit,
+.code-block-container .language-css .token.function {
+  color: #795e26 !important; /* Brown in light theme */
+  font-weight: 500 !important;
+}
+
+.dark .code-block-container .token.unit,
+.dark .code-block-container .language-css .token.function {
+  color: #dcdcaa !important; /* Yellow in dark theme */
+  font-weight: 500 !important;
+}
+
+.code-block-container .token.operator,
+.code-block-container .token.combinator {
+  color: #24292e !important; /* Dark text in light theme */
+}
+
+.dark .code-block-container .token.operator,
+.dark .code-block-container .token.combinator {
+  color: #d4d4d4 !important; /* Light gray in dark theme */
+}
+
+.code-block-container .token.module,
+.code-block-container .token.selector,
+.code-block-container .token.selector .class,
+.code-block-container .token.selector.class {
+  color: #800000 !important; /* Dark red in light theme */
+  font-weight: 500 !important;
+}
+
+.dark .code-block-container .token.module,
+.dark .code-block-container .token.selector,
+.dark .code-block-container .token.selector .class,
+.dark .code-block-container .token.selector.class {
+  color: #d7ba7d !important; /* VS Code tan in dark theme */
+  font-weight: 500 !important;
+}
+
+/* Fallback for standard prose blocks (if any exist) */
+pre[class*='language-']:not(.code-block-container pre) {
+  color: #24292e;
+}
+
+.dark pre[class*='language-']:not(.code-block-container pre) {
+  color: #d4d4d4;
 }

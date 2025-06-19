@@ -5,149 +5,238 @@ export const meta = {
   date: '2021-05-16',
   title: 'My day to day VS Code Snippets',
   description: `
-    VS Code snippets are very powerful and therefore you can do many things with it.
-    I have create a few snippets which in my opinion are very helpful in my day to day tasks.
+    Boost your PHP development productivity with these essential VS Code snippets.
+    A collection of time-saving code templates that I use daily for faster Laravel development.
   `,
 }
 
 export default (props) => <ArticleLayout meta={meta} {...props} />
 
-VS Code snippets are very powerful and therefore you can do many things with it. I have create a few snippets which in my opinion are very helpful in my day to day tasks.
+As a PHP developer who's transitioned from various editors like Sublime Text and PHP Storm, I've found VS Code to strike the perfect balance between simplicity and power. One feature that has dramatically increased my productivity is custom code snippets.
 
-Recently I have been moving from different text editors/ IDE's such as Sublime Text & PHP Storm, but VS Code is a very good choice between this two choices.
-Mainly my language of choice is PHP and I really love the simplicity of this language.
+Here are the essential VS Code snippets that have become indispensable in my daily Laravel development workflow.
 
-1. Public method
+## Setting Up Your Snippets
+
+Before diving into the snippets, you can access your PHP snippets file in VS Code by:
+
+1. Press `Cmd/Ctrl + Shift + P`
+2. Type "Configure User Snippets"
+3. Select "php.json"
+
+Now let's explore the snippets that will supercharge your PHP development.
+
+## 1. Public Method Snippet
+
+**Trigger:** `met`
+
+This snippet creates a basic public function structure with parameter placeholders.
+
 ```json
 {
-	"New Public Method": {
-		"prefix": "met",
-		"body": [
-			"public function $1($2)",
-			"{",
-			"    $3",
-			"}"
-		],
-		"description": "New Public Method"
-	},
+  "New Public Method": {
+    "prefix": "met",
+    "body": [
+      "public function $1($2)",
+      "{",
+      "    $3",
+      "}"
+    ],
+    "description": "Create a new public method"
+  }
 }
 ```
 
-2. Protected method
+**Usage:** Type `met` + Tab, then fill in the method name, parameters, and body.
+
+## 2. Protected Method Snippet
+
+**Trigger:** `pmet`
+
+Perfect for creating protected methods in your classes.
+
 ```json
 {
-    "New Protected Method": {
-		"prefix": "pmet",
-		"body": [
-			"protected function $1($2)",
-			"{",
-			"    $3",
-			"}"
-		],
-		"description": "New Protected Method"
-	},
+  "New Protected Method": {
+    "prefix": "pmet",
+    "body": [
+      "protected function $1($2)",
+      "{",
+      "    $3",
+      "}"
+    ],
+    "description": "Create a new protected method"
+  }
 }
 ```
 
-3. Private method
+## 3. Private Method Snippet
+
+**Trigger:** `pvmet`
+
+For encapsulated private methods within your classes.
+
 ```json
 {
-    "New Private Method": {
-        "prefix": "pvmet",
-        "body": [
-            "private function $1($2)",
-            "{",
-            "    $3",
-            "}"
-        ],
-        "description": "New Private Method"
-    },
+  "New Private Method": {
+    "prefix": "pvmet",
+    "body": [
+      "private function $1($2)",
+      "{",
+      "    $3",
+      "}"
+    ],
+    "description": "Create a new private method"
+  }
 }
 ```
 
-4. Add a new item into array this is by far my best snippet as it increases my productivity a lot.
+## 4. Array Item Snippet 🚀
+
+**Trigger:** `.` (single dot)
+
+This is my absolute favorite snippet! It dramatically speeds up array creation in PHP.
+
 ```json
 {
-    "Add one item in the array": {
-		"prefix": ".",
-		"body": [
-			"'$1' => $2,"
-		],
-		"description": "Add one item in the array"
-	},
+  "Add one item in the array": {
+    "prefix": ".",
+    "body": [
+      "'$1' => $2,"
+    ],
+    "description": "Add a key-value pair to an array"
+  }
 }
 ```
 
-5. Add one item in the array with second parameter same name
+**Perfect for:**
+- Laravel configuration arrays
+- Route parameters
+- Form validation rules
+- Database migration columns
+
+## 5. Variable-Named Array Item
+
+**Trigger:** `..` (double dot)
+
+When you need the array key to match a variable name - incredibly useful for Laravel forms and data transformation.
+
 ```json
 {
-    "Add one item in the array with second parameter same name": {
-        "prefix": "..",
-        "body": [
-            "'$1' => \\$$1,"
-        ],
-        "description": "Add one item in the array"
-    }
+  "Add array item with matching variable name": {
+    "prefix": "..",
+    "body": [
+      "'$1' => \\$$1,"
+    ],
+    "description": "Add array item where key matches variable name"
+  }
 }
 ```
 
-6. Laravel Model Casts
+**Example output:** `'email' => $email,`
+
+## 6. Laravel Model Casts
+
+**Trigger:** `m:casts`
+
+Quickly add the casts property to your Eloquent models.
+
 ```json
 {
-    "Laravel Model Casts": {
-        "prefix": "m:casts",
-        "body": [
-            "/**",
-            " * The attributes that should be cast to native types.",
-            " *",
-            " * @var array",
-            " */",
-            "protected \\$casts = [",
-            "    '$1' => '${0:type}',",
-            "];"
-        ],
-        "description": "Laravel Model Casts"
-    }
+  "Laravel Model Casts": {
+    "prefix": "m:casts",
+    "body": [
+      "/**",
+      " * The attributes that should be cast to native types.",
+      " *",
+      " * @var array<string, string>",
+      " */",
+      "protected \\$casts = [",
+      "    '$1' => '${2:string}',",
+      "];"
+    ],
+    "description": "Add model casts property"
+  }
 }
 ```
 
-6. Laravel Model Guarded
+## 7. Laravel BelongsTo Relationship
+
+**Trigger:** `m:belongsTo`
+
+Generate a properly documented BelongsTo relationship method.
+
 ```json
 {
-    "Laravel Model BelongsTo": {
-        "prefix": "m:belongsTo",
-        "body": [
-            "/**",
-            " * Get the ${1/(.*)/${1:/downcase}/} that the ${TM_FILENAME_BASE/(.*)$/${1:/downcase}/} belongs to.",
-            " * @return \\Illuminate\\Database\\Eloquent\\Relations\\BelongsTo",
-            " */",
-            "public function $1()",
-            "{",
-            "    return \\$this->belongsTo(${2:${1/(.*)$/${1:/capitalize}/}}::class);",
-            "}"
-        ],
-        "description": "Laravel Model BelongsTo"
-    }
+  "Laravel Model BelongsTo": {
+    "prefix": "m:belongsTo",
+    "body": [
+      "/**",
+      " * Get the ${1/(.*)/${1:/downcase}/} that owns the ${TM_FILENAME_BASE/(.*)$/${1:/downcase}/}.",
+      " *",
+      " * @return \\Illuminate\\Database\\Eloquent\\Relations\\BelongsTo<${2:${1/(.*)$/${1:/capitalize}/}}>",
+      " */",
+      "public function $1(): BelongsTo",
+      "{",
+      "    return \\$this->belongsTo(${2:${1/(.*)$/${1:/capitalize}/}}::class);",
+      "}"
+    ],
+    "description": "Create a BelongsTo relationship method"
+  }
 }
 ```
 
-7. Laravel Has One Relationship
+## 8. Laravel HasOne Relationship
+
+**Trigger:** `m:hasOne`
+
+Generate a properly documented HasOne relationship method.
+
 ```json
 {
-    "Laravel Has One Relationship": {
-        "prefix": "m:hasOne",
-        "body": [
-            "/**",
-            " * Get the ${1/(.*)/${1:/downcase}/} associated with the ${TM_FILENAME_BASE/(.*)$/${1:/downcase}/}.",
-            " *",
-            " * @return \\Illuminate\\Database\\Eloquent\\Relations\\HasOne",
-            " */",
-            "public function $1()",
-            "{",
-            "    return \\$this->hasOne(${2:${1/(.*)$/${1:/capitalize}/}}::class);",
-            "}"
-        ],
-        "description": "Laravel Has One Relationship"
-    }
+  "Laravel HasOne Relationship": {
+    "prefix": "m:hasOne",
+    "body": [
+      "/**",
+      " * Get the ${1/(.*)/${1:/downcase}/} associated with the ${TM_FILENAME_BASE/(.*)$/${1:/downcase}/}.",
+      " *",
+      " * @return \\Illuminate\\Database\\Eloquent\\Relations\\HasOne<${2:${1/(.*)$/${1:/capitalize}/}}>",
+      " */",
+      "public function $1(): HasOne",
+      "{",
+      "    return \\$this->hasOne(${2:${1/(.*)$/${1:/capitalize}/}}::class);",
+      "}"
+    ],
+    "description": "Create a HasOne relationship method"
+  }
 }
 ```
+
+## Pro Tips for Maximum Productivity
+
+### Snippet Placeholders
+
+VS Code snippets support several placeholder types:
+- `$1`, `$2`, `$3` - Tab stops for cursor navigation
+- `${1:default}` - Placeholders with default values
+- `${1|option1,option2,option3|}` - Choice placeholders
+
+### File-Specific Variables
+
+Use these built-in variables in your snippets:
+- `$TM_FILENAME_BASE` - Current file name without extension
+- `$TM_DIRECTORY` - Directory of the current file
+- `$CURRENT_YEAR` - Current year
+
+### Transform Snippets
+
+The relationship snippets use transforms to automatically:
+- Generate proper method documentation
+- Convert class names to appropriate case
+- Create consistent naming patterns
+
+## Conclusion
+
+These snippets have saved me countless hours of repetitive typing and helped maintain consistency across my Laravel projects. The array item snippets alone have transformed how quickly I can build configuration arrays and data structures.
+
+Start with a few that match your most common patterns, then gradually add more as you identify repetitive code blocks in your workflow.

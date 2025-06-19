@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import { Skill } from '@/components/Skill'
 import { TwitterIcon, GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
 import clsx from 'clsx'
@@ -24,6 +25,7 @@ function MailIcon(props) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
+        fill="currentColor"
         fillRule="evenodd"
         d="M6 5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H6Zm.245 2.187a.75.75 0 0 0-.99 1.126l6.25 5.5a.75.75 0 0 0 .99 0l6.25-5.5a.75.75 0 0 0-.99-1.126L12 12.251 6.245 7.187Z"
       />
@@ -96,18 +98,62 @@ function XIcon(props) {
 }
 
 export default function CV() {
+  const [isDarkMode, setIsDarkMode] = useState(false)
+
+  useEffect(() => {
+    // Function to check if dark mode is active
+    const checkDarkMode = () => {
+      // Check if document has dark class (for manual theme switching)
+      if (document.documentElement.classList.contains('dark')) {
+        return true
+      }
+      // Check system preference
+      if (
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+      ) {
+        return true
+      }
+      return false
+    }
+
+    // Set initial state
+    setIsDarkMode(checkDarkMode())
+
+    // Listen for changes in system theme
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    const handleChange = () => setIsDarkMode(checkDarkMode())
+
+    mediaQuery.addListener(handleChange)
+
+    // Listen for manual theme changes (if using a theme switcher)
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(checkDarkMode())
+    })
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    })
+
+    return () => {
+      mediaQuery.removeListener(handleChange)
+      observer.disconnect()
+    }
+  }, [])
+
   return (
     <>
       <Head>
         <title>CV - Eluert Mukja</title>
         <meta name="description" content="Thank you for checking out my CV" />
       </Head>
-      <div className="page print:max-w-letter md:max-w-letter md:h-letter xsm:p-8 mx-auto max-w-5xl bg-white p-6 dark:bg-zinc-900 sm:p-9 md:p-16">
+      <div className="page print:max-w-letter md:max-w-letter md:h-letter xsm:p-8 mx-auto max-w-5xl bg-white p-6 dark:bg-zinc-900 print:bg-white sm:p-9 md:p-16">
         <header className="mb-8 md:mb-10">
           {/* Main Profile Row */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="h-24 w-24 overflow-hidden rounded-full bg-gradient-to-br from-teal-500 to-teal-600 p-0.5">
+              <div className="h-24 w-24 overflow-hidden rounded-full">
                 <Image
                   src={avatarImage}
                   alt="Eluert Mukja"
@@ -119,10 +165,10 @@ export default function CV() {
                 <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 md:text-3xl">
                   Eluert Mukja
                 </h1>
-                <p className="text-sm font-medium text-teal-600 dark:text-teal-400 md:text-base">
+                <p className="text-sm font-medium text-zinc-600 dark:text-zinc-300 md:text-base">
                   Senior Full Stack Developer
                 </p>
-                <div className="flex items-center gap-1 text-xs text-zinc-500 dark:text-zinc-400">
+                <div className="flex items-center gap-1 text-xs text-zinc-600 dark:text-zinc-300">
                   <LocationPinIcon className="h-3 w-3" />
                   <span>London, United Kingdom</span>
                 </div>
@@ -135,7 +181,7 @@ export default function CV() {
                 href="https://github.com/Erth0"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-zinc-400 dark:hover:bg-gray-800 dark:hover:text-white"
+                className="flex h-10 w-10 items-center justify-center rounded-full text-zinc-700 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white print:text-zinc-300"
                 title="GitHub"
               >
                 <GitHubIcon className="h-6 w-6" />
@@ -144,7 +190,7 @@ export default function CV() {
                 href="https://linkedin.com/in/eluert-mukja/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-blue-50 hover:text-blue-600 dark:text-zinc-400 dark:hover:bg-blue-900/20 dark:hover:text-blue-400"
+                className="flex h-10 w-10 items-center justify-center rounded-full text-zinc-700 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white print:text-zinc-300"
                 title="LinkedIn"
               >
                 <LinkedInIcon className="h-6 w-6" />
@@ -153,32 +199,55 @@ export default function CV() {
                 href="https://x.com/mukja_e"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full text-zinc-500 transition-colors hover:bg-gray-100 hover:text-black dark:text-zinc-400 dark:hover:bg-gray-800 dark:hover:text-white"
+                className="flex h-10 w-10 items-center justify-center rounded-full text-zinc-700 transition-colors hover:bg-gray-100 hover:text-black dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-white print:text-zinc-300"
                 title="X (formerly Twitter)"
               >
                 <XIcon className="h-6 w-6" />
               </a>
+              <div className="mx-2 h-6 w-px bg-zinc-300 dark:bg-zinc-500"></div>
+              <a
+                download={`eluert-mukja-cv.pdf`}
+                href={isDarkMode ? '/resume-dark.pdf' : '/resume.pdf'}
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full text-zinc-700 transition-colors hover:bg-teal-50 hover:text-teal-600 dark:text-zinc-200 dark:hover:bg-teal-900/40 dark:hover:text-teal-400 print:text-zinc-300"
+                title="Download CV as PDF"
+              >
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  />
+                </svg>
+              </a>
             </div>
 
             {/* Social Links - Print Only */}
-            <div className="hidden print:flex print:flex-col print:gap-1 print:text-xs print:text-gray-700">
+            <div className="hidden print:flex print:flex-col print:gap-1 print:text-xs dark:print:text-zinc-300">
               <a
                 href="https://github.com/Erth0"
-                className="flex items-center gap-2 print:text-gray-700 print:no-underline"
+                className="flex items-center gap-2 print:no-underline dark:print:text-zinc-300"
               >
                 <GitHubIcon className="h-3 w-3" />
                 <span>https://github.com/Erth0</span>
               </a>
               <a
                 href="https://linkedin.com/in/eluert-mukja/"
-                className="flex items-center gap-2 print:text-gray-700 print:no-underline"
+                className="flex items-center gap-2 print:no-underline dark:print:text-zinc-300"
               >
                 <LinkedInIcon className="h-3 w-3" />
                 <span>https://linkedin.com/in/eluert-mukja/</span>
               </a>
               <a
                 href="https://x.com/mukja_e"
-                className="flex items-center gap-2 print:text-gray-700 print:no-underline"
+                className="flex items-center gap-2 print:no-underline dark:print:text-zinc-300"
               >
                 <XIcon className="h-3 w-3" />
                 <span>https://x.com/mukja_e</span>
@@ -187,17 +256,17 @@ export default function CV() {
           </div>
 
           {/* Contact Info Row */}
-          <div className="mt-4 flex flex-wrap items-center gap-6 border-b border-zinc-200 pb-6 text-sm text-zinc-600 dark:border-zinc-700 dark:text-zinc-400 print:border-gray-300 print:text-gray-700">
+          <div className="mt-4 flex flex-wrap items-center gap-6 border-b border-zinc-200 pb-6 text-sm text-zinc-700 dark:border-zinc-700 dark:text-zinc-300 print:border-zinc-300 dark:print:text-zinc-300">
             <a
               href="mailto:hey@mukja.dev"
-              className="flex items-center gap-2 transition-colors hover:text-teal-600 dark:hover:text-teal-400 print:text-gray-700"
+              className="flex items-center gap-2 transition-colors hover:text-teal-600 dark:hover:text-teal-400 dark:print:text-zinc-300"
             >
               <MailIcon className="h-4 w-4 print:h-3 print:w-3" />
               <span>hey@mukja.dev</span>
             </a>
             <a
               href="tel:07464816930"
-              className="flex items-center gap-2 transition-colors hover:text-teal-600 dark:hover:text-teal-400 print:text-gray-700"
+              className="flex items-center gap-2 transition-colors hover:text-teal-600 dark:hover:text-teal-400 dark:print:text-zinc-300"
             >
               <TelephoneIcon className="h-4 w-4 print:h-3 print:w-3" />
               <span>(+44) 7464816930</span>
@@ -206,7 +275,7 @@ export default function CV() {
               href="https://mukja.dev"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 transition-colors hover:text-teal-600 dark:hover:text-teal-400 print:text-gray-700"
+              className="flex items-center gap-2 transition-colors hover:text-teal-600 dark:hover:text-teal-400 dark:print:text-zinc-300"
             >
               <GlobeIcon className="h-4 w-4 print:h-3 print:w-3" />
               <span>mukja.dev</span>
@@ -220,7 +289,7 @@ export default function CV() {
               <h2 className="mb-4 text-sm font-bold tracking-widest text-teal-700">
                 ABOUT ME
               </h2>
-              <p className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-400">
+              <p className="text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
                 Senior Full Stack Developer with 9+ years of experience
                 delivering scalable, high-quality web applications, primarily
                 using Laravel, PHP, and MySQL. I specialize in backend
@@ -429,26 +498,26 @@ export default function CV() {
               </h2>
               <div className="flex gap-8">
                 <div>
-                  <div className="text-sm font-medium text-zinc-800 dark:text-zinc-100 print:text-black">
+                  <div className="text-sm font-medium text-zinc-800 dark:text-zinc-100 dark:print:text-zinc-300">
                     English
                   </div>
-                  <div className="text-xs text-zinc-600 dark:text-zinc-400 print:text-gray-600">
+                  <div className="text-xs text-zinc-600 dark:text-zinc-400 dark:print:text-zinc-400">
                     Professional Working
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-zinc-800 dark:text-zinc-100 print:text-black">
+                  <div className="text-sm font-medium text-zinc-800 dark:text-zinc-100 dark:print:text-zinc-300">
                     Greek
                   </div>
-                  <div className="text-xs text-zinc-600 dark:text-zinc-400 print:text-gray-600">
+                  <div className="text-xs text-zinc-600 dark:text-zinc-400 dark:print:text-zinc-400">
                     Native or Bilingual
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-zinc-800 dark:text-zinc-100 print:text-black">
+                  <div className="text-sm font-medium text-zinc-800 dark:text-zinc-100 dark:print:text-zinc-300">
                     Albanian
                   </div>
-                  <div className="text-xs text-zinc-600 dark:text-zinc-400 print:text-gray-600">
+                  <div className="text-xs text-zinc-600 dark:text-zinc-400 dark:print:text-zinc-400">
                     Native or Bilingual
                   </div>
                 </div>
@@ -461,152 +530,91 @@ export default function CV() {
               <h2 className="mb-4 text-sm font-bold tracking-widest text-teal-700">
                 SKILLS
               </h2>
-
-              {/* Backend & Languages */}
-              <div className="mb-4 rounded border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-800/50">
-                <h3 className="mb-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
-                  Backend & Languages
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  <Skill name="PHP" />
-                  <Skill name="Laravel" />
-                  <Skill name="MySQL" />
-                  <Skill name="PostgreSQL" />
-                  <Skill name="Elasticsearch" />
-                  <Skill name="Redis" />
-                  <Skill name="Node.js" />
-                  <Skill name="Express.js" />
-                  <Skill name="API Development" />
-                  <Skill name="REST APIs" />
-                  <Skill name="Database Migration" />
-                  <Skill name="Internationalization" />
+              <div className="space-y-3">
+                <div>
+                  <h3 className="mb-1 text-sm font-semibold text-zinc-800 dark:text-zinc-100 dark:print:text-zinc-300">
+                    Backend & Languages
+                  </h3>
+                  <p className="text-sm text-zinc-700 dark:text-zinc-300 dark:print:text-zinc-400">
+                    PHP, Laravel, MySQL, PostgreSQL, Elasticsearch, Redis,
+                    Node.js, Express.js, API Development, REST APIs, Database
+                    Migration, Internationalization
+                  </p>
                 </div>
-              </div>
 
-              {/* Frontend & UI */}
-              <div className="mb-4 rounded border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-800/50">
-                <h3 className="mb-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
-                  Frontend & UI
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  <Skill name="JavaScript" />
-                  <Skill name="Vue.js" />
-                  <Skill name="React" />
-                  <Skill name="Inertia.js" />
-                  <Skill name="Livewire" />
-                  <Skill name="Tailwind CSS" />
-                  <Skill name="HTML5" />
-                  <Skill name="CSS3" />
-                  <Skill name="SASS" />
-                  <Skill name="Bootstrap" />
+                <div>
+                  <h3 className="mb-1 text-sm font-semibold text-zinc-800 dark:text-zinc-100 dark:print:text-zinc-300">
+                    Frontend & UI
+                  </h3>
+                  <p className="text-sm text-zinc-700 dark:text-zinc-300 dark:print:text-zinc-400">
+                    JavaScript, Vue.js, React, Inertia.js, Livewire, Tailwind
+                    CSS, HTML5, CSS3, SASS, Bootstrap
+                  </p>
                 </div>
-              </div>
 
-              {/* Architecture & Leadership */}
-              <div className="mb-4 rounded border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-800/50">
-                <h3 className="mb-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
-                  Architecture & Leadership
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  <Skill name="System Architecture" />
-                  <Skill name="Team Leadership" />
-                  <Skill name="Code Reviews" />
-                  <Skill name="Performance Optimization" />
-                  <Skill name="Database Design" />
-                  <Skill name="Technical Mentoring" />
+                <div>
+                  <h3 className="mb-1 text-sm font-semibold text-zinc-800 dark:text-zinc-100 dark:print:text-zinc-300">
+                    Architecture & Leadership
+                  </h3>
+                  <p className="text-sm text-zinc-700 dark:text-zinc-300 dark:print:text-zinc-400">
+                    System Architecture, Team Leadership, Code Reviews,
+                    Performance Optimization, Database Design, Technical
+                    Mentoring
+                  </p>
                 </div>
-              </div>
 
-              {/* Testing & Quality */}
-              <div className="mb-4 rounded border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-800/50">
-                <h3 className="mb-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
-                  Testing & Quality
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  <Skill name="PHPUnit" />
-                  <Skill name="Pest PHP" />
-                  <Skill name="Unit Testing" />
-                  <Skill name="Integration Testing" />
-                  <Skill name="PHPStan" />
-                  <Skill name="Rector PHP" />
-                  <Skill name="Code Quality" />
+                <div>
+                  <h3 className="mb-1 text-sm font-semibold text-zinc-800 dark:text-zinc-100 dark:print:text-zinc-300">
+                    Testing & Quality
+                  </h3>
+                  <p className="text-sm text-zinc-700 dark:text-zinc-300 dark:print:text-zinc-400">
+                    PHPUnit, Pest PHP, Unit Testing, Integration Testing,
+                    PHPStan, Rector PHP, Code Quality
+                  </p>
                 </div>
-              </div>
 
-              {/* DevOps & Cloud */}
-              <div className="mb-4 rounded border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-800/50">
-                <h3 className="mb-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
-                  DevOps & Cloud
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  <Skill name="AWS" />
-                  <Skill name="Hetzner" />
-                  <Skill name="Oracle Cloud" />
-                  <Skill name="CI/CD" />
-                  <Skill name="Docker" />
-                  <Skill name="Infrastructure as Code" />
-                  <Skill name="Monitoring" />
-                  <Skill name="Laravel Forge" />
-                  <Skill name="Git" />
-                  <Skill name="AWS S3" />
-                  <Skill name="Queue Systems" />
-                  <Skill name="Logging & Analytics" />
-                  <Skill name="Backup & Recovery" />
+                <div>
+                  <h3 className="mb-1 text-sm font-semibold text-zinc-800 dark:text-zinc-100 dark:print:text-zinc-300">
+                    DevOps & Cloud
+                  </h3>
+                  <p className="text-sm text-zinc-700 dark:text-zinc-300 dark:print:text-zinc-400">
+                    AWS, Hetzner, Oracle Cloud, CI/CD, Docker, Infrastructure as
+                    Code, Monitoring, Laravel Forge, Git, AWS S3, Queue Systems,
+                    Logging & Analytics, Backup & Recovery
+                  </p>
                 </div>
-              </div>
 
-              {/* APIs & Integration */}
-              <div className="mb-4 rounded border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-800/50">
-                <h3 className="mb-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
-                  APIs & Integration
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  <Skill name="Third-party APIs" />
-                  <Skill name="Webhooks" />
-                  <Skill name="API Authentication" />
-                  <Skill name="Data Synchronization" />
-                  <Skill name="Microservices" />
-                  <Skill name="Event-driven Architecture" />
-                  <Skill name="API Documentation" />
-                  <Skill name="Mobile API Design" />
-                  <Skill name="Real-time Features" />
-                  <Skill name="Email Systems" />
+                <div>
+                  <h3 className="mb-1 text-sm font-semibold text-zinc-800 dark:text-zinc-100 dark:print:text-zinc-300">
+                    APIs & Integration
+                  </h3>
+                  <p className="text-sm text-zinc-700 dark:text-zinc-300 dark:print:text-zinc-400">
+                    Third-party APIs, Webhooks, API Authentication, Data
+                    Synchronization, Microservices, Event-driven Architecture,
+                    API Documentation, Mobile API Design, Real-time Features,
+                    Email Systems
+                  </p>
                 </div>
-              </div>
 
-              {/* Security & Performance */}
-              <div className="mb-4 rounded border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-800/50">
-                <h3 className="mb-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
-                  Security & Performance
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  <Skill name="Security Best Practices" />
-                  <Skill name="PCI Compliance" />
-                  <Skill name="Data Protection" />
-                  <Skill name="Performance Tuning" />
-                  <Skill name="Caching Strategies" />
-                  <Skill name="Load Optimization" />
+                <div>
+                  <h3 className="mb-1 text-sm font-semibold text-zinc-800 dark:text-zinc-100 dark:print:text-zinc-300">
+                    Security & Performance
+                  </h3>
+                  <p className="text-sm text-zinc-700 dark:text-zinc-300 dark:print:text-zinc-400">
+                    Security Best Practices, PCI Compliance, Data Protection,
+                    Performance Tuning, Caching Strategies, Load Optimization
+                  </p>
                 </div>
-              </div>
 
-              {/* Development Tools & Frameworks */}
-              <div className="mb-2 rounded border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-800/50">
-                <h3 className="mb-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
-                  Development Tools & Frameworks
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  <Skill name="Stripe" />
-                  <Skill name="PayPal" />
-                  <Skill name="Worldpay" />
-                  <Skill name="Laravel Nova" />
-                  <Skill name="Filament" />
-                  <Skill name="Laravel Telescope" />
-                  <Skill name="Laravel Horizon" />
-                  <Skill name="Postman" />
-                  <Skill name="Composer" />
-                  <Skill name="NPM" />
-                  <Skill name="Vite" />
-                  <Skill name="Webpack" />
+                <div>
+                  <h3 className="mb-1 text-sm font-semibold text-zinc-800 dark:text-zinc-100 dark:print:text-zinc-300">
+                    Development Tools & Frameworks
+                  </h3>
+                  <p className="text-sm text-zinc-700 dark:text-zinc-300 dark:print:text-zinc-400">
+                    Stripe, PayPal, Worldpay, Laravel Nova, Filament, Laravel
+                    Telescope, Laravel Horizon, Postman, Composer, NPM, Vite,
+                    Webpack
+                  </p>
                 </div>
               </div>
             </div>
